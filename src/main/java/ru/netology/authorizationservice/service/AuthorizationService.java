@@ -8,6 +8,7 @@ import ru.netology.authorizationservice.controller.Authorities;
 import ru.netology.authorizationservice.exception.InvalidCredentials;
 import ru.netology.authorizationservice.exception.UnauthorizedUser;
 import ru.netology.authorizationservice.repository.UserRepository;
+import ru.netology.authorizationservice.user.User;
 
 import java.util.List;
 
@@ -20,13 +21,15 @@ public class AuthorizationService {
         this.userRepository = userRepository;
     }
 
-    public List<Authorities> getAuthorities(String name, String password) {
-        if (!StringUtils.hasLength(name) || !StringUtils.hasLength(password)) {
+    public List<Authorities> getAuthorities(User user) {
+        // Первый if, получается, больше не нужен, так как мы проверям,
+        // есть ли имя и пароль до выполения метода контроллера, правильно?
+        if (!StringUtils.hasLength(user.getName()) || !StringUtils.hasLength(user.getPassword())) {
             throw new InvalidCredentials("User name or password is empty");
         }
-        List<Authorities> userAuthorities = userRepository.getUserAuthorities(name, password);
+        List<Authorities> userAuthorities = userRepository.getUserAuthorities(user);
         if (CollectionUtils.isEmpty(userAuthorities)) {
-            throw new UnauthorizedUser("Unknown name " + name);
+            throw new UnauthorizedUser("Unknown name " + user.getName());
         }
         return userAuthorities;
     }

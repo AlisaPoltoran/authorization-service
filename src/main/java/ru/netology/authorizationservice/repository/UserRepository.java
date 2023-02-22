@@ -23,10 +23,9 @@ public class UserRepository {
         usersAuthorities.put(alisa, alisaAuthorities);
     }
 
-    public List<Authorities> getUserAuthorities(String name, String password) {
-        User tempUser = new User(name, password);
-        if (usersAuthorities.containsKey(tempUser)) {
-            return usersAuthorities.get(tempUser);
+    public List<Authorities> getUserAuthorities(User user) {
+        if (usersAuthorities.containsKey(user)) {
+            return usersAuthorities.get(user);
         }
         return null;
     }
