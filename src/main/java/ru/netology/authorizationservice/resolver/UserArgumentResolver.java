@@ -1,4 +1,4 @@
-package ru.netology.authorizationservice.user;
+package ru.netology.authorizationservice.resolver;
 
 
 import org.springframework.core.MethodParameter;
@@ -7,8 +7,10 @@ import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
+import ru.netology.authorizationservice.model.Authorities;
+import ru.netology.authorizationservice.model.User;
 
-import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 public class UserArgumentResolver implements HandlerMethodArgumentResolver {
@@ -30,6 +32,6 @@ public class UserArgumentResolver implements HandlerMethodArgumentResolver {
         String name = nameAndPassword.get("user")[0];
         String password = nameAndPassword.get("password")[0];
 
-        return new User(name, password);
+        return new User(name, password, List.of(Authorities.READ));
     }
 }

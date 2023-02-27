@@ -1,4 +1,4 @@
-package ru.netology.authorizationservice.user;
+package ru.netology.authorizationservice.resolver;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;

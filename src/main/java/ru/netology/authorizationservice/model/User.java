@@ -1,10 +1,11 @@
-package ru.netology.authorizationservice.user;
+package ru.netology.authorizationservice.model;
 
 import lombok.*;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import java.util.List;
 
 @AllArgsConstructor
 @Getter
@@ -18,4 +19,6 @@ public class User {
     private String name;
     @NotEmpty
     private String password;
+    private List<Authorities> authorities;
+
 }
