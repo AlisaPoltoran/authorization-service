@@ -32,6 +32,6 @@ public class UserArgumentResolver implements HandlerMethodArgumentResolver {
         String name = nameAndPassword.get("user")[0];
         String password = nameAndPassword.get("password")[0];
 
-        return new User(name, password, List.of(Authorities.READ));
+        return new User(name, password);
     }
 }

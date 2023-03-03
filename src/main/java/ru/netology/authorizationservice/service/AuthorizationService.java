@@ -22,14 +22,12 @@ public class AuthorizationService {
     }
 
     public List<Authorities> getAuthorities(User user) {
-        // Первый if, получается, больше не нужен, так как мы проверям,
-        // есть ли имя и пароль до выполения метода контроллера, правильно?
         if (!StringUtils.hasLength(user.getName()) || !StringUtils.hasLength(user.getPassword())) {
             throw new InvalidCredentials("User name or password is empty");
         }
         List<Authorities> userAuthorities = userRepository.getUserAuthorities(user);
         if (CollectionUtils.isEmpty(userAuthorities)) {
-            throw new UnauthorizedUser("Unknown name " + user.getName());
+            throw new UnauthorizedUser("Unknown user " + user.getName());
         }
         return userAuthorities;
     }

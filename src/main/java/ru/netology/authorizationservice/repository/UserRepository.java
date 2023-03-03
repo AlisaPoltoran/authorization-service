@@ -6,11 +6,8 @@ import ru.netology.authorizationservice.model.Authorities;
 import ru.netology.authorizationservice.model.User;
 
 import javax.annotation.PostConstruct;
-import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.Collections;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Collectors;
 
@@ -32,7 +29,7 @@ public class UserRepository {
                 .filter(k -> k.getPassword().equals(user.getPassword()))
                 .collect(Collectors.toList());
         if (tempUser.isEmpty()) {
-            throw new UnauthorizedUser("Unknown name " + user.getName());
+            return Collections.emptyList();
         } else {
             return tempUser.get(0).getAuthorities();
         }

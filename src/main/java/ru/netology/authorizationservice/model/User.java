@@ -11,7 +11,6 @@ import java.util.List;
 @Getter
 @Setter
 @EqualsAndHashCode
-@Value
 public class User {
     @NotEmpty
     @Min(1)
@@ -19,6 +18,10 @@ public class User {
     private String name;
     @NotEmpty
     private String password;
-    private List<Authorities> authorities;
+    private List<Authorities> authorities = null;
 
+    public User (String name, String password) {
+        this.name = name;
+        this.password = password;
+    }
 }
