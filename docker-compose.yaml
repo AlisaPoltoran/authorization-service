@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  app1:
+    image: 'myserviceapp:latest'
+    container_name: 'mycontainer'
+    ports:
+      - '8081:8080'

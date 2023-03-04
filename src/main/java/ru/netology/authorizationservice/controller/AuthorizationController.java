@@ -10,7 +10,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-public class AuthorizationController {
+public class  AuthorizationController {
     private final AuthorizationService service;
 
     public AuthorizationController(AuthorizationService service) {
